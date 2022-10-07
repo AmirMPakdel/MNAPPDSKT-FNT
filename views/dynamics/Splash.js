@@ -1,6 +1,8 @@
+import { checkCustomRoutes } from "node_modules/next/dist/lib/load-custom-routes";
 import React, { Component } from "react";
 import MainButton from "../components/MainButton";
-import MainLayout from "../components/MainLayout";
+import MainLayout from "../layouts/MainLayout";
+import UpdateModal from "../modals/UpdateModal";
 import styles from "./Splash.module.css";
 
 /**
@@ -22,6 +24,7 @@ export default class Splash extends Component {
         }
 
         window.electronAPI.failedConnection(this.onFailConnection);
+        window.electronAPI.showUpdateModal(this.onUpdateModal);
     }
     
     componentDidMount(){
@@ -41,6 +44,12 @@ export default class Splash extends Component {
         window.electronAPI.retryConnection();
 
         this.setState({connection_check_loading:true});
+    }
+
+    onUpdateModal = (event, value)=>{
+
+        console.log(value);
+        window.chest.setAndShowModal(1, <UpdateModal data={value}/>);
     }
     
     render(){

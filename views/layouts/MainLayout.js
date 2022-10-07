@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./MainLayout.module.css";
+import ModalLayout from "./ModalLayout";
 
 /**
 * Props of MainLayout Component
@@ -24,11 +25,13 @@ export default class MainLayout extends Component {
     
     render(){
         return(
-            <div className={styles.con}>
+            <ModalLayout>
+                <div className={styles.con}>
 
-                {this.props.children}
-                
-            </div>
+                    {this.props.children}
+
+                </div>
+            </ModalLayout>
         )
     }
 }

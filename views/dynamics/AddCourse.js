@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MainLayout from "../components/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import styles from "./AddCourse.module.css";
 
 /**

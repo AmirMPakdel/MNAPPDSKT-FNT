@@ -49,10 +49,6 @@ export default class MainButton extends Component {
 
             add_class += styles.border_mode+" bpc1 ";
 
-        }else if(this.props.whiteBorder){
-
-            add_class += styles.white_border+" blc1 ";
-        
         }else{
 
             add_class += "bgpc1 ";
@@ -68,7 +64,7 @@ export default class MainButton extends Component {
 
         if(this.props.loading){
 
-            add_class += " bdc2 bglc1 "+styles.border_mode;
+            add_class += " bpc1 bglc1 "+styles.border_mode;
         }
 
         if(!this.props.loading && !this.props.disabled){
@@ -92,7 +88,7 @@ export default class MainButton extends Component {
                             null
                         }
                         {
-                            this.props.whiteBorder?
+                            this.props.borderMode?
                             <div className={styles.title+" bdyt "+this.props.titleClassName+" fpc2"}>{this.props.title}</div>:
                             <div className={styles.title+" bdyt "+this.props.titleClassName+" flc1"}>{this.props.title}</div>
                         }
