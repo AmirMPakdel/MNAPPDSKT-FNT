@@ -17,33 +17,30 @@ export default class Splash extends Component {
         super(props);
         //this.controller = new SplashController(this);
         this.state = {
-            
+            show_retry_btn:false,
+            connection_check_loading:false,
         }
 
         window.electronAPI.failedConnection(this.onFailConnection);
-
-        //window.electronAPI.updateRequired(this.onUpdateRequired);
-
-        // window.electronAPI.handleCounter((event, value) => {
-        //     console.log(value+1);
-        //     event.sender.send('counter-value', value+1)
-        // })
     }
     
     componentDidMount(){
 
         //window.electronAPI.openFile();
-        
     }
 
     onFailConnection = (event, value)=>{
 
-        console.log("hi");
-        window.electronAPI.retryConnection();
+        console.log("onFailConnection", event, value);
+
+        this.setState({show_retry_btn:true, connection_check_loading:false});
     }
 
-    onUpdateRequired = (event, value)=>{
+    onRetryConnectionCheck = ()=>{
 
+        window.electronAPI.retryConnection();
+
+        this.setState({connection_check_loading:true});
     }
     
     render(){
@@ -55,13 +52,15 @@ export default class Splash extends Component {
                     <img className={styles.main_logo+" animate__bounceInDown"} src={"/img/minfo_logo.svg"}/>
 
                     {
-                        false?
+                        this.state.show_retry_btn?
                         <div className={styles.retry_sec}>
 
                             <div className={styles.error_tx+" fdg"}>{"خطای اتصال به سرور"}</div>
 
                             <MainButton className={styles.retry_btn}
-                            title={"تلاش مجدد"}/>
+                            title={"تلاش مجدد"}
+                            onClick={this.onRetryConnectionCheck}
+                            loading={this.state.connection_check_loading}/>
 
                         </div>:null
                     }
