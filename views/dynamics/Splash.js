@@ -52,10 +52,10 @@ export default class Splash extends Component {
 
                 <div className={styles.con}>
 
-                    <img className={styles.main_logo} src={"/img/minfo-pg.svg"}/>
+                    <img className={styles.main_logo+" animate__bounceInDown"} src={"/img/minfo_logo.svg"}/>
 
                     {
-                        true?
+                        false?
                         <div className={styles.retry_sec}>
 
                             <div className={styles.error_tx+" fdg"}>{"خطای اتصال به سرور"}</div>
